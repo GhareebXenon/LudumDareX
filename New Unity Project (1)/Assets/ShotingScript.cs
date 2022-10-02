@@ -15,7 +15,7 @@ public class ShotingScript : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        Destroy(bullet, 0.2f);
+        
     }
 
 
