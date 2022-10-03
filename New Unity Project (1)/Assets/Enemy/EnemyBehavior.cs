@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Handler;
+using Player.Behavior;
 
 namespace Enemy.Behavior
 {
-    public class Behavior : MonoBehaviour
+    public class EnemyBehavior : MonoBehaviour
     {
-        public static Behavior enemyBehavior { get; private set; }
+        public static EnemyBehavior enemyBehavior { get; private set; }
         [SerializeField]
         Transform target;
         [SerializeField]
@@ -52,15 +53,15 @@ namespace Enemy.Behavior
                 Destroy(this.gameObject);
         }
 
-        void DamagePlayer(int dmg)
-        {
-            GameManager.gameManager.playerHealth.HpDmg(dmg);
-        }
-
         void CheckHealth()
         {
             if (GameManager.gameManager.enemyHealth.CurrHp == 0)
                 Destroy(this.gameObject);
+        }
+
+        private void OnCollisionExit2D(Collision2D other) {
+            if (other.collider.tag == "Player")
+                PlayerBehavior.playerBehavior.PlayerTakeDamage(damageToHealth);
         }
     }
 

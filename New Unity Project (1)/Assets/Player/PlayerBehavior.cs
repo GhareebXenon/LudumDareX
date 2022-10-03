@@ -5,11 +5,10 @@ using Handler;
 
 namespace Player.Behavior
 {
-    public class Behavior : MonoBehaviour
+    public class PlayerBehavior : MonoBehaviour
     {
-        public static Behavior playerBehavior { get; private set; }
-        [SerializeField]
-        int damageToHealth;
+        public static PlayerBehavior playerBehavior { get; private set; }
+        public int damageToHealth;
 
         void Awake()
         {
@@ -21,10 +20,11 @@ namespace Player.Behavior
             CheckHealth();
         }
 
-        void DamageEnemy(int dmg)
+        public void PlayerTakeDamage(int dmg)
         {
-            GameManager.gameManager.enemyHealth.HpDmg(dmg);
+            GameManager.gameManager.playerHealth.HpDmg(dmg);
         }
+
         void CheckHealth()
         {
             if (GameManager.gameManager.playerHealth.CurrHp == 0)
