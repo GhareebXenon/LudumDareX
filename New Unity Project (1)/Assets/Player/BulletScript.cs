@@ -24,14 +24,16 @@ public class BulletScript : MonoBehaviour
 
     }
 
-   
+
     void Update()
     {
-        
+
     }
 
-    private void OnCollisionExit2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.collider.tag == "Enemy")
             EnemyBehavior.enemyBehavior.EnemyTakeDamage(PlayerBehavior.playerBehavior.damageToHealth);
+
     }
 }

@@ -8,6 +8,8 @@ namespace Enemy.Behavior
 {
     public class EnemyBehavior : MonoBehaviour
     {
+        [SerializeField]
+        GameObject[] EnemyEntity;
         public static EnemyBehavior enemyBehavior { get; private set; }
         [SerializeField]
         Transform target;
@@ -16,16 +18,20 @@ namespace Enemy.Behavior
         [SerializeField]
         float speed;
         float distance;
+        int enemyCount;
+        [SerializeField]
+        int maxEnemyNum;
+        [SerializeField]
+        Transform[] spawnPoint;
         public int damageToHealth;
         void Start()
         {
-
+            StartCoroutine(EnemySpawn());
         }
 
         void Update()
         {
             FollowTarget();
-            DestroyOnContact();
             CheckHealth();
         }
 
@@ -47,21 +53,30 @@ namespace Enemy.Behavior
             }
         }
 
-        void DestroyOnContact()
-        {
-            if (this.transform.position.x == target.position.x && this.transform.position.y == target.position.y)
-                Destroy(this.gameObject);
-        }
-
         void CheckHealth()
         {
             if (GameManager.gameManager.enemyHealth.CurrHp == 0)
                 Destroy(this.gameObject);
         }
 
-        private void OnCollisionExit2D(Collision2D other) {
+        IEnumerator EnemySpawn()
+        {
+            while (enemyCount < maxEnemyNum)
+            {
+                Instantiate(EnemyEntity[Random.Range(0,1)], new Vector3(spawnPoint[Random.Range(0, 5)].position.x, spawnPoint[Random.Range(0, 5)].position.y, spawnPoint[Random.Range(0, 5)].position.z), Quaternion.identity);
+                yield return new WaitForSeconds(500f);
+                enemyCount += 1;
+            }
+            yield return new WaitForSeconds(10f);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
             if (other.collider.tag == "Player")
+            {
                 PlayerBehavior.playerBehavior.PlayerTakeDamage(damageToHealth);
+                Destroy(this.gameObject);
+            }
         }
     }
 
