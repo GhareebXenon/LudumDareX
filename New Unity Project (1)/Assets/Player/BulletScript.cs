@@ -28,21 +28,16 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
-<<<<<<< Updated upstream
-=======
-        
->>>>>>> Stashed changes
+
 
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "Enemy")
+        {
+            GameObject.Destroy(bullet);
             EnemyBehavior.enemyBehavior.EnemyTakeDamage(PlayerBehavior.playerBehavior.damageToHealth);
-<<<<<<< Updated upstream
-
-=======
-        GameObject.Destroy(bullet);
->>>>>>> Stashed changes
+        }
     }
 }

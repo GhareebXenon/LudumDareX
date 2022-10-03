@@ -23,9 +23,6 @@ namespace Handler
 
         }
 
-        void CheckHealth()
-        {
-        }
     }
 
 }

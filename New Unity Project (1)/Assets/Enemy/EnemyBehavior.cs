@@ -61,21 +61,22 @@ namespace Enemy.Behavior
 
         IEnumerator EnemySpawn()
         {
+            yield return new WaitForSeconds(1f);
             while (enemyCount < maxEnemyNum)
             {
-                Instantiate(EnemyEntity[Random.Range(0,1)], new Vector3(spawnPoint[Random.Range(0, 5)].position.x, spawnPoint[Random.Range(0, 5)].position.y, spawnPoint[Random.Range(0, 5)].position.z), Quaternion.identity);
-                yield return new WaitForSeconds(500f);
+                Instantiate(EnemyEntity[Random.Range(0, 1)], new Vector3(spawnPoint[Random.Range(0, 5)].position.x, spawnPoint[Random.Range(0, 5)].position.y, spawnPoint[Random.Range(0, 5)].position.z), Quaternion.identity);
+                yield return new WaitForSeconds(30f);
                 enemyCount += 1;
             }
-            yield return new WaitForSeconds(10f);
+            yield return null;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.tag == "Player")
             {
-                PlayerBehavior.playerBehavior.PlayerTakeDamage(damageToHealth);
                 Destroy(this.gameObject);
+                PlayerBehavior.playerBehavior.PlayerTakeDamage(damageToHealth);
             }
         }
     }
