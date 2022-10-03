@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enemy.Behavior;
 
 public class BulletScript : MonoBehaviour
 {
@@ -26,5 +27,10 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionExit2D(Collision2D other) {
+        if (other.collider.name == "Enemies")
+            Behavior.enemyBehavior.EnemyTakeDamage(Behavior.enemyBehavior.damageToHealth);
     }
 }

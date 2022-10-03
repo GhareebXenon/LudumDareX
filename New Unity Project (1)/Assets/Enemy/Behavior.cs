@@ -7,6 +7,7 @@ namespace Enemy.Behavior
 {
     public class Behavior : MonoBehaviour
     {
+        public static Behavior enemyBehavior { get; private set; }
         [SerializeField]
         Transform target;
         [SerializeField]
@@ -14,19 +15,20 @@ namespace Enemy.Behavior
         [SerializeField]
         float speed;
         float distance;
-        // Start is called before the first frame update
+        public int damageToHealth;
         void Start()
         {
 
         }
 
-        // Update is called once per frame
         void Update()
         {
             FollowTarget();
+            DestroyOnContact();
+            CheckHealth();
         }
 
-        void EnemyTakeDamage(int dmg)
+        public void EnemyTakeDamage(int dmg)
         {
             GameManager.gameManager.enemyHealth.HpDmg(dmg);
         }
@@ -44,6 +46,22 @@ namespace Enemy.Behavior
             }
         }
 
+        void DestroyOnContact()
+        {
+            if (this.transform.position.x == target.position.x && this.transform.position.y == target.position.y)
+                Destroy(this.gameObject);
+        }
+
+        void DamagePlayer(int dmg)
+        {
+            GameManager.gameManager.playerHealth.HpDmg(dmg);
+        }
+
+        void CheckHealth()
+        {
+            if (GameManager.gameManager.enemyHealth.CurrHp == 0)
+                Destroy(this.gameObject);
+        }
     }
 
 }
