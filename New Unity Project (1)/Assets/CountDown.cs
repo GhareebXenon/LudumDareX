@@ -7,7 +7,7 @@ public class CountDown : MonoBehaviour
 {
     public float TimeStart = 10;
     public Text textBox;
-
+    public GameObject player;
 
 
    
@@ -24,5 +24,10 @@ public class CountDown : MonoBehaviour
             TimeStart -= Time.deltaTime;
         }
         textBox.text = Mathf.Round(TimeStart).ToString();
+        if (TimeStart < 0)
+        {
+            GameObject.Destroy(player);
+        }
+
     }
 }
