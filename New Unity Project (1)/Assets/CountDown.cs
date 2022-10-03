@@ -19,7 +19,10 @@ public class CountDown : MonoBehaviour
 
     void Update()
     {
-        TimeStart -= Time.deltaTime;
+        if (TimeStart > 0)
+        {
+            TimeStart -= Time.deltaTime;
+        }
         textBox.text = Mathf.Round(TimeStart).ToString();
     }
 }
