@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountDown : MonoBehaviour
 {
     public float TimeStart = 10;
     public Text textBox;
     public GameObject player;
+    public GameObject button;
 
 
    
@@ -27,7 +29,13 @@ public class CountDown : MonoBehaviour
         if (TimeStart < 0)
         {
             GameObject.Destroy(player);
+            button.SetActive(true);
+
         }
 
+    }
+    public void ReStart()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 }
