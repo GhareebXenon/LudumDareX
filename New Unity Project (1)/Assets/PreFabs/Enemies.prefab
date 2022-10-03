@@ -299,7 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe113eb9e50aa344be5726ec4007918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyEntity: {fileID: 3713462578424607794}
+  EnemyEntity:
+  - {fileID: 3713462578424607794}
   target: {fileID: 0}
   SightRange: 200
   speed: 1
@@ -309,8 +310,8 @@ MonoBehaviour:
   - {fileID: 2080344559}
   - {fileID: 584748934}
   - {fileID: 2053133775}
+  - {fileID: 1428752873}
   - {fileID: 764321375}
-  - {fileID: 0}
   damageToHealth: 0
 --- !u!1001 &6269711175964668905
 PrefabInstance:
@@ -431,6 +432,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00db36209e809c243b5c02f4231ec712, type: 3}
+--- !u!4 &1428752873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7315246986772148961, guid: 00db36209e809c243b5c02f4231ec712, type: 3}
+  m_PrefabInstance: {fileID: 7315246986052369160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8374688358504218710
 PrefabInstance:
   m_ObjectHideFlags: 0
