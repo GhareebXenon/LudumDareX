@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force;
+    public GameObject bullet;
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -27,6 +28,10 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
 
     }
 
@@ -34,6 +39,10 @@ public class BulletScript : MonoBehaviour
     {
         if (other.collider.tag == "Enemy")
             EnemyBehavior.enemyBehavior.EnemyTakeDamage(PlayerBehavior.playerBehavior.damageToHealth);
+<<<<<<< Updated upstream
 
+=======
+        GameObject.Destroy(bullet);
+>>>>>>> Stashed changes
     }
 }
