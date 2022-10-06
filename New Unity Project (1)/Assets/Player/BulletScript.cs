@@ -37,7 +37,7 @@ public class BulletScript : MonoBehaviour
         if (other.collider.tag == "Enemy")
         {
             GameObject.Destroy(bullet);
-            EnemyBehavior.enemyBehavior.EnemyTakeDamage(PlayerBehavior.playerBehavior.damageToHealth);
+            Destroy(other.gameObject);
         }
     }
 }

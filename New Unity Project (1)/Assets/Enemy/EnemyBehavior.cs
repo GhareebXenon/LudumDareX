@@ -8,8 +8,7 @@ namespace Enemy.Behavior
 {
     public class EnemyBehavior : MonoBehaviour
     {
-        [SerializeField]
-        GameObject[] EnemyEntity;
+
         public static EnemyBehavior enemyBehavior { get; private set; }
         [SerializeField]
         Transform target;
@@ -18,21 +17,14 @@ namespace Enemy.Behavior
         [SerializeField]
         float speed;
         float distance;
-        int enemyCount;
-        [SerializeField]
-        int maxEnemyNum;
-        [SerializeField]
-        Transform[] spawnPoint;
-        public int damageToHealth;
+
         void Start()
         {
-            StartCoroutine(EnemySpawn());
         }
 
         void Update()
         {
             FollowTarget();
-            CheckHealth();
         }
 
         public void EnemyTakeDamage(int dmg)
@@ -53,30 +45,13 @@ namespace Enemy.Behavior
             }
         }
 
-        void CheckHealth()
-        {
-            if (GameManager.gameManager.enemyHealth.CurrHp == 0)
-                Destroy(this.gameObject);
-        }
-
-        IEnumerator EnemySpawn()
-        {
-            yield return new WaitForSeconds(1f);
-            while (enemyCount < maxEnemyNum)
-            {
-                Instantiate(EnemyEntity[Random.Range(0, 1)], new Vector3(spawnPoint[Random.Range(0, 5)].position.x, spawnPoint[Random.Range(0, 5)].position.y, spawnPoint[Random.Range(0, 5)].position.z), Quaternion.identity);
-                yield return new WaitForSeconds(30f);
-                enemyCount += 1;
-            }
-            yield return null;
-        }
+        
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.tag == "Player")
             {
                 Destroy(this.gameObject);
-                PlayerBehavior.playerBehavior.PlayerTakeDamage(damageToHealth);
             }
         }
     }

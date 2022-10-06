@@ -8,7 +8,7 @@ namespace Player.Behavior
     public class PlayerBehavior : MonoBehaviour
     {
         public static PlayerBehavior playerBehavior { get; private set; }
-        public int damageToHealth;
+        int dmgCount;
 
         void Awake()
         {
@@ -17,18 +17,18 @@ namespace Player.Behavior
 
         void Update()
         {
-            CheckHealth();
         }
 
-        public void PlayerTakeDamage(int dmg)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            GameManager.gameManager.playerHealth.HpDmg(dmg);
-        }
-
-        void CheckHealth()
-        {
-            if (GameManager.gameManager.playerHealth.CurrHp == 0)
-                Destroy(this.gameObject);
+            if (other.collider.tag == "Enemy")
+            {
+                if (dmgCount >= 4)
+                {
+                    Destroy(this.gameObject);
+                }
+                dmgCount += 1;
+            }
         }
     }
 }
