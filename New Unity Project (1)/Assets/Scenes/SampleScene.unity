@@ -1046,6 +1046,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HAHA SQUARE
       objectReference: {fileID: 0}
+    - target: {fileID: 6267092312863498774, guid: 1e31ea10b2e1ae640950dfbfe62809ef, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e31ea10b2e1ae640950dfbfe62809ef, type: 3}
 --- !u!1 &1605127242
@@ -1204,6 +1208,10 @@ PrefabInstance:
     - target: {fileID: 2210140604252958617, guid: f54674f3d25225a41b899b9b7cfe95ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3713462578424607794, guid: f54674f3d25225a41b899b9b7cfe95ff, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7545211683313760939, guid: f54674f3d25225a41b899b9b7cfe95ff, type: 3}
       propertyPath: m_Name
